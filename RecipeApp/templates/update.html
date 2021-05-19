@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <title>New recipe</title>
+</head>
+<body>
+    <a href="/user/dashboard">Home</a>
+    <a href="/user/logout">Logout</a>
+    <div class="jumbotron text-center" style="margin-bottom:0">
+        <h1>Editing Your Recipe</h1>
+    </div>
+    {% if messages %}
+    <ul>    
+        {% for message in messages %}    
+            <li>{{ message }}</li>    
+        {% endfor %}
+    </ul>
+    {% endif %}
+    <div class="form-group">
+        <div class="form-group col-md-6">
+        <form action="/recipe/{{recipe.id}}/update" method="post">
+            {% csrf_token %}
+            <label for="title">Title:</label>
+            <input type="text" class="form-control" name="title">
+            <br>
+            <label for="description">Description:</label>
+            <textarea name="description" class="form-control" id="exampleFormControlTextarea1" rows="3" style="resize: none;"></textarea>
+            <br>
+            <label for="ingredients">Ingredients:</label>
+            <textarea class="form-control"  name="ingredients" rows="3" style="resize: none;"></textarea>
+            <br>
+            <label for="instructions">Instructions:</label>
+            <textarea class="form-control"  name="instructions" rows="3" style="resize: none;"></textarea>
+            <br>
+            <button>Submit</button>
+        </form>
+    </div>
+    </div>
+    <br>
+    <a href="/recipe/{{recipe.id}}">Cancel</a>
+</body>
+</body>
+</html>
